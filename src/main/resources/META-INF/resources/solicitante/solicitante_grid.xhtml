@@ -1,0 +1,16 @@
+<ui:composition
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    
+    <h:panelGroup rendered="#{!solicitanteController.cadastrando}">
+    	<h1>Solicitantes</h1>
+		<p:commandButton value="Novo Solicitante" style="margin-bottom: 1em" icon="pi pi-plus" update="@form" id="novoSolicitanteButton" action="#{solicitanteController.novoSolicitante}" />
+        <p:dataTable var="solicitante" value="#{solicitanteController.solicitantes}">
+            <p:column headerText="Nome">
+                <h:outputText value="#{solicitante.nome}" />
+            </p:column>
+        </p:dataTable>
+    </h:panelGroup>
+</ui:composition>	

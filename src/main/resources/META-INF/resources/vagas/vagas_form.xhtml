@@ -1,0 +1,27 @@
+<ui:composition
+	xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <h:panelGroup rendered="#{vagasController.cadastrando}">
+    	<h1>Cadastro de vaga</h1>
+        <p>Data Inicial</p>
+		<div class="field col-12 md:col-4">
+			<p:outputLabel for="inicioData" value=""/>
+			<p:datePicker id="inicioData" value="#{vagasController.vaga.inicio}" showIcon="true" />
+		</div>
+        <p>Data Final</p>
+        <div class="field col-12 md:col-4">
+			<p:outputLabel for="fimData" value="" />
+			<p:datePicker id="fimData" value="#{vagasController.vaga.fim}" showIcon="true" />
+		</div>
+        <p>Quantidade</p>
+		<p:inputNumber value="#{vagasController.vaga.quantidade}" required="true" label="Quantidade" minValue="0" decimalPlaces="0" />
+		<div class="grid" style="padding-top: 1em">
+    		<p:commandButton value="Salvar" update="@form" style="margin-right: 5px" id="salvarCadastroButton" action="#{vagasController.salvarVaga}" styleClass="ui-button-success" />    				
+    		<p:commandButton value="Cancelar" update="@form" process="@this" id="cancelarCadastrovagasButton" action="#{vagasController.cancelarNovaVaga}" styleClass="ui-button-danger" />
+		</div>
+    </h:panelGroup>
+</ui:composition>	

@@ -1,0 +1,23 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <h:head>
+    </h:head>
+    
+    <h:body>
+	    <h:form>  
+		    <p:menubar>
+	            <p:menuitem value="Agendamentos" url="/agendamento/agendamento.jsf" icon="pi pi-tag" />
+	            <p:menuitem value="Vagas" url="/vagas/vagas.jsf" icon="pi pi-calendar" />
+	            <p:menuitem value="Solicitantes" url="/solicitante/solicitante.jsf" icon="pi pi-user" />
+		    </p:menubar>
+		</h:form>
+	    
+	    <div style="padding-left: 2em; padding-right: 2em">
+	    	<ui:insert name="content" />
+	    </div>
+    </h:body>
+</html>	

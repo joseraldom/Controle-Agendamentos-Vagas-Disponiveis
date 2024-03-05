@@ -1,0 +1,29 @@
+<ui:composition
+	xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+	<h:panelGroup rendered="#{agendamentoController.cadastrando}">
+    	<h1>Cadastro de Agendamento</h1>
+        <p>Data</p>
+		<div class="field col-12 md:col-4">
+			<p:outputLabel for="inicioData" value=""/>
+			<p:datePicker id="inicioData" value="#{agendamentoController.agendamento.data}" showIcon="true" />
+		</div>
+        <p>Número</p>
+		<p:inputText value="#{agendamentoController.agendamento.numero}" required="true" label="Número" />
+        <p>Motivo</p>
+		<p:inputTextarea value="#{agendamentoController.agendamento.motivo}" required="true" label="Motivo" rows="6" cols="50" maxlength="255" />
+        <p>Solicitante</p>
+		<p:autoComplete value="#{agendamentoController.solicitanteSelecionado}"
+                    completeMethod="#{agendamentoController.completeSolicitantes}"
+                    var="item" itemLabel="#{item.nome}" itemValue="#{item}"
+                    converter="#{solicitanteConverter}" forceSelection="true" scrollHeight="250"/>
+		<div class="grid" style="padding-top: 1em">
+    		<p:commandButton value="Salvar" update="@form" style="margin-right: 5px" id="salvarCadastroButton" action="#{agendamentoController.salvarAgendamento}" styleClass="ui-button-success" />    				
+    		<p:commandButton value="Cancelar" update="@form" process="@this" id="cancelarCadastroagendamentoButton" action="#{agendamentoController.cancelarNovoAgendamento}" styleClass="ui-button-danger" />
+		</div>
+    </h:panelGroup>
+</ui:composition>	

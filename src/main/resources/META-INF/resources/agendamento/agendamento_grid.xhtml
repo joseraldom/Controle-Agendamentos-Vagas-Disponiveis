@@ -1,0 +1,44 @@
+<ui:composition
+	xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+	<h:panelGroup rendered="#{!agendamentoController.cadastrando}">
+		<h1>Agendamento</h1>
+		<div class="field col-12 md:col-4">
+			<div style="margin-bottom: 1em">
+				<p>Período</p>
+				<p:datePicker id="range" selectionMode="range" style="margin-right: 5px" value="#{agendamentoController.range}" readonlyInput="true" showButtonBar="true" />
+				<p>Número</p>
+				<p:inputText value="#{agendamentoController.numeroFiltro}" label="Número" />
+				<p>Solicitante</p>
+				<p:autoComplete value="#{agendamentoController.solicitanteSelecionadoFiltro}"
+                    completeMethod="#{agendamentoController.completeSolicitantes}"
+                    var="item" itemLabel="#{item.nome}" itemValue="#{item}"
+                    converter="#{solicitanteConverter}" forceSelection="true" scrollHeight="250"/>
+    			<p></p>
+    			<p:commandButton value="Pesquisar" type="Button" icon="pi pi-search" update="@form" id="consultaAgendamentoButton" action="#{agendamentoController.consultaPorPeriodo}" />
+			</div>
+			<p:separator />
+			<p:commandButton value="Novo Agendamento" style="margin-bottom: 1em; margin-right: 5px" icon="pi pi-plus" update="@form" id="novoAgendamentoButton" action="#{agendamentoController.novoAgendamento}" />
+		</div>
+        <p:dataTable var="agendamento" value="#{agendamentoController.agendamentos}">
+            <p:column headerText="Data">
+                <h:outputText value="#{agendamento.data}">
+                	<f:convertDateTime type="localDate" pattern="dd/MM/yyyy" />
+                </h:outputText>
+            </p:column>
+            <p:column headerText="Número">
+                <h:outputText value="#{agendamento.numero}" />
+            </p:column>
+            <p:column headerText="Motivo">
+                <h:outputText value="#{agendamento.motivo}" />
+            </p:column>
+            <p:column headerText="Solicitante">
+                <h:outputText value="#{agendamento.solicitanteNome}" />
+            </p:column>
+        </p:dataTable>
+	</h:panelGroup>
+</ui:composition>	
